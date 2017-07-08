@@ -58,6 +58,41 @@ common to all poll-mode drivers (PMDs).
 Several methods to migrate existing applications are described in `API
 migration`_.
 
+Device Abstraction
+------------------
+
+The rte_flow APIs can be regarded as the interface of an abstract device. Any
+rule be created by rte_flow API mapps to an unambiguous behaviour on this
+abstract device. A real device that support rte_flow API could be regarded as
+a partial implementation of the abstract device.
+
+Below picture describes the layout of rte_flow abstact device.
+
+<picture 1>
+
+A rte_flow abstract device contains below components:
+
+Physical Port:
+A Physical Port represents an external interface of the Abstract Device. The
+Abstract Device contain 1 or more Physical Ports and each port is identified
+by a 32 bit integer.
+
+Network Funtion:
+A Network Function represents a network interface that can be managed by a DPDK
+rte_ethdev instance. It is the place to program packet filtering rule for
+packets that are received from or transmitted to this network interface's PMD
+driver. The abstract device has one Primary Network Function which is
+represented by "PF", since usually it is mapped to a real device's SR-IOV
+Physical Function. An abstract device also contains a number of "VF" which are
+also Network Functions and each VF is idenfied by a 32 bit integer.
+
+Switch Function:
+A Switch Function represents an internal packet forward engine, it contains a
+number of Switch Ports that each one either connect to a Network Function or
+a Physical Port. A flow that be programmed into the Switch Function defines
+a packet forward rule for packet be transferred between Network Functions and
+Physical Ports.
+
 Flow rule
 ---------
 
