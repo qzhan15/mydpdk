@@ -62,8 +62,8 @@ Device Abstraction
 ------------------
 
 The rte_flow APIs can be regarded as the interface of an abstract device. The
-abstract device is discribed as a combination of different abstract components
-that provide the context of a flow rule.
+abstract device can be discribed as a combination of different abstract
+components that provide the context of a flow rule.
 As an implementation of the abstract device, a real device is not necessary to
 adapt to all these abstract components, driver simply reject a flow rule if
 the backend device missing some components that required by the flow.
@@ -81,9 +81,9 @@ by a 32 bit integer.
 
 Network Funtion:
 A Network Function represents a network interface that can be managed by a
-rte_ethdev instance. It is the place to program flow rule for packets be
-transferred from/to the network interface's data path driver.
-The abstract device has one Primary Network Function which is represented by
+DPDK rte_ethdev instance. It is the place to program flow rule for packets be
+transferred between the Network Function and host or VM.
+The abstract device has one primary Network Function which is represented by
 "PF", since usually it is mapped to a real device's SR-IOV Physical Function.
 An abstract device also contains a number of "VF" which are also Network
 Functions and each VF is idenfied by a 32 bit integer.
