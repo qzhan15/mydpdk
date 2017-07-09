@@ -79,12 +79,12 @@ by a 32 bit integer.
 
 Network Funtion:
 A Network Function represents a network interface that can be managed by a DPDK
-rte_ethdev instance. It is the place to program packet filtering rule for
-packets that are received from or transmitted to this network interface's PMD
-driver. The abstract device has one Primary Network Function which is
-represented by "PF", since usually it is mapped to a real device's SR-IOV
-Physical Function. An abstract device also contains a number of "VF" which are
-also Network Functions and each VF is idenfied by a 32 bit integer.
+rte_ethdev instance. It is the place to program flow rule for packets that are
+received from or transmitted to this network interface's PMD driver. The
+abstract device has one Primary Network Function which is represented by "PF",
+since usually it is mapped to a real device's SR-IOV Physical Function. An
+abstract device also contains a number of "VF" which are also Network Functions
+and each VF is idenfied by a 32 bit integer.
 
 Switch Function:
 A Switch Function represents an internal packet forward engine, it contains a
