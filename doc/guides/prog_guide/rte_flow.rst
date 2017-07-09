@@ -61,20 +61,22 @@ migration`_.
 Device Abstraction
 ------------------
 
-The rte_flow APIs can be regarded as the interface of an abstract device. Any
-rule be created by rte_flow API mapps to an unambiguous behaviour on this
-abstract device. A real device that support rte_flow API could be regarded as
-a partial implementation of the abstract device.
+The rte_flow APIs can be regarded as the interface of an abstract device. The
+abstract device is discribed as a combination of different abstract components
+that provide the context of a flow rule.
+As an implementation of the abstract device, a real device is not necessary to
+adapt to all these abstract components, driver simply reject a flow rule if
+the backend device missing some components that required by the flow.
 
 Below picture describes the layout of rte_flow abstact device.
 
 <picture 1>
 
-A rte_flow abstract device contains below components:
+An abstract device contains below components:
 
 Physical Port:
-A Physical Port represents an external interface of the Abstract Device. The
-Abstract Device contain 1 or more Physical Ports and each port is identified
+A Physical Port represents an external interface of the abstract device. The
+abstract device contain 1 or more Physical Ports and each port is identified
 by a 32 bit integer.
 
 Network Funtion:
